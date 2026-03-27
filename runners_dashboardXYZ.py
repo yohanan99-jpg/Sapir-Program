@@ -236,12 +236,18 @@ def compute_kpis(df: pd.DataFrame) -> dict:
 st.title("🏃 Running Events Dashboard")
 st.caption("דשבורד אינטראקטיבי לניתוח רצים, מרחקים, זמנים, גילאים ומרוצים.")
 
-is_url_source = DATA_SOURCE.startswith(("http://", "https://"))
-if not is_url_source and not Path(DATA_SOURCE).exists():
-    st.error(f"לא נמצא קובץ נתונים בנתיב: {DATA_SOURCE}")
+# is_url_source = DATA_SOURCE.startswith(("http://", "https://"))
+# if not is_url_source and not Path(DATA_SOURCE).exists():
+#     st.error(f"לא נמצא קובץ נתונים בנתיב: {DATA_SOURCE}")
+#     st.stop()
+
+# df = load_data(DATA_SOURCE)
+
+if not DATA_PATH.exists():
+    st.error(f"לא נמצא קובץ נתונים בנתיב: {DATA_PATH}")
     st.stop()
 
-df = load_data(DATA_SOURCE)
+df = load_data(str(DATA_PATH))
 
 with st.sidebar:
     st.header("סינון נתונים")
