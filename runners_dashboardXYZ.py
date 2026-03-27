@@ -12,7 +12,7 @@ st.set_page_config(
     layout="wide",
 )
 
-DATA_PATH = Path(__file__).with_name("data2.csv")
+DATA_SOURCE = "https://drive.google.com/uc?id=1ZjyhRJsRU6SNvU49vmkluhXpftABQUGa"
 
 NUMERIC_COLS = [
     "Year of event",
@@ -118,7 +118,7 @@ COLUMN_LABELS = {
 
 @st.cache_data(show_spinner=True)
 def load_data(path: str) -> pd.DataFrame:
-    df = pd.read_csv(path)
+    df = pd.read_parquet(path)
 
     for col in NUMERIC_COLS:
         if col in df.columns:
@@ -235,11 +235,12 @@ def compute_kpis(df: pd.DataFrame) -> dict:
 st.title("🏃 Running Events Dashboard")
 st.caption("דשבורד אינטראקטיבי לניתוח רצים, מרחקים, זמנים, גילאים ומרוצים.")
 
-if not DATA_PATH.exists():
-    st.error(f"לא נמצא קובץ נתונים בנתיב: {DATA_PATH}")
+is_url_source = DATA_SOURCE.startswith(("http://", "https://"))
+if not is_url_source and not Path(DATA_SOURCE).exists():
+    st.error(f"לא נמצא קובץ נתונים בנתיב: {DATA_SOURCE}")
     st.stop()
 
-df = load_data(str(DATA_PATH))
+df = load_data(DATA_SOURCE)
 
 with st.sidebar:
     st.header("סינון נתונים")
