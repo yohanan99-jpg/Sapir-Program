@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("data.csv")
+df = pd.read_csv("small_data.csv")
 
 # Downcast numeric columns
 for col in df.select_dtypes(include=['int', 'float']).columns:
@@ -12,4 +12,4 @@ for col in df.select_dtypes(include=['object']).columns:
         df[col] = df[col].astype('category')
 
 # Save as parquet (with compression)
-df.to_parquet("data.parquet", compression="snappy", index=False)
+df.to_parquet("small_data.parquet", compression="snappy", index=False)

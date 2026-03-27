@@ -12,7 +12,8 @@ st.set_page_config(
     layout="wide",
 )
 
-DATA_SOURCE = "https://drive.google.com/uc?id=1ZjyhRJsRU6SNvU49vmkluhXpftABQUGa"
+#DATA_SOURCE = "https://drive.google.com/uc?id=1ZjyhRJsRU6SNvU49vmkluhXpftABQUGa"
+DATA_PATH = Path(__file__).with_name("small_data.parquet")
 
 NUMERIC_COLS = [
     "Year of event",
