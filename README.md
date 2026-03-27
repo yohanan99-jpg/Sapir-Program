@@ -5,6 +5,7 @@ This repository contains a Streamlit dashboard for analyzing running events.
 Important notes
 - The CSV data files (`data.csv`, `data2.csv`) are intentionally excluded from this repository and are listed in `.gitignore`.
 - The largest data file currently included is `data.parquet` (≈61 MB). Consider using Git LFS if you want to keep large files under version control.
+- Since the data file was too large it cause the Streamlit.io site to curash - we redused the data to minimus that GitHub could store and chage the format to Parquet (small-data.parquet)
 
 Main runnable scripts
 - `runners_dashboardXYZ.py` — the last full running version of the dashboard (recommended to run).
